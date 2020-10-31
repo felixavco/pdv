@@ -35,5 +35,3 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
-
-// sequelize model:generate --name User --attributes id:string,firstName:string,middleName:string,lastName:string,secondLastName:string,email:string,password:string,storeId:string,role:number,permissions:number

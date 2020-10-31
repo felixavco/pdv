@@ -2,7 +2,7 @@ module.exports = {
   development: {
     username: 'postgres',
     password: 'root',
-    database: 'pdv_db',
+    database: 'pg_pdv_db',
     host: 'localhost',
     dialect: 'postgres',
     operatorsAliases: false,
@@ -10,7 +10,7 @@ module.exports = {
   test: {
     username: 'postgres',
     password: 'root',
-    database: 'pdv_db_test',
+    database: 'pg_pdv_db_test',
     host: 'localhost',
     dialect: 'postgres',
     operatorsAliases: false,
