@@ -1,5 +1,5 @@
 const Server = require('./server');
-const config = require('./config');
+const { settings } = require('./config');
 
-const server = new Server(config.PORT);
+const server = new Server(settings.PORT);
 server.start();

@@ -15,13 +15,14 @@ module.exports = {
         type: Sequelize.STRING
       },
       phones: {
-        type: Sequelize.STRING
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
       socialMedia: {
-        type: Sequelize.INTEGER
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
       currency: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: 'usd'
       },
       nit: {
         type: Sequelize.STRING

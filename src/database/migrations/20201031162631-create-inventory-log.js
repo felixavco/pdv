@@ -3,8 +3,8 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('InventoryLogs', {
       id: {
-        primaryKey: true,
         unique: true,
+        primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },

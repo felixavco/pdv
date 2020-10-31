@@ -1,4 +1,5 @@
 const express = require('express');
+const passport = require('passport');
 const Router = express.Router;
 const ProductController = require('../controllers/product.controler');
 
@@ -6,6 +7,7 @@ class ProductRoutes extends ProductController {
   constructor() {
     super();
     this.router = Router();
+    this.protected = passport.authenticate('jwt', { session: false });
     this.routes();
   }
 
