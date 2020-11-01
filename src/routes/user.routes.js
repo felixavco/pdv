@@ -13,14 +13,44 @@ class UserRoutes extends UserController {
 
   routes() {
     this.router.post(
+      '/login',
+      this.login
+    );
+
+    this.router.post(
       '/create',
       this.protected,
       this.create
     );
 
-    this.router.post(
-      '/login',
-      this.login
+    this.router.get(
+      '/user-data',
+      this.protected,
+      this.getUser
+    );
+
+    this.router.get(
+      '/:id',
+      this.protected,
+      this.getOne
+    );
+
+    this.router.get(
+      '/',
+      this.protected,
+      this.getList
+    );
+
+    this.router.put(
+      '/:id',
+      this.protected,
+      this.update
+    );
+
+    this.router.delete(
+      '/:id',
+      this.protected,
+      this.delete
     )
   }
 

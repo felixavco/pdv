@@ -92,11 +92,19 @@ class ProductController {
   }
 
   async update(req, res) {
+    const { storeId, role } = req.user;
+
+    if (role < ROLES.ADMIN) {
+      return res.status(403).json(
+        response(null, false, { message: messages.insufficient_privileges })
+      )
+    }
+
     const updated = { ...req.body }
     const { id } = req.params
 
     try {
-      const [success] = await Product.update(updated, { where: { id } });
+      const [success] = await Product.update(updated, { where: { id, storeId } });
 
       if (!success) {
         return res.status(404).json(response(null, false, { message: messages.no_product }));
@@ -124,7 +132,9 @@ class ProductController {
       if (!deleted) {
         return res.status(404).json(response(null, false, { message: messages.no_product }));
       }
+
       return res.json(response({ id }));
+
     } catch (error) {
       return res.status(500).json(response(null, false, { error: error.toString() }));
     }

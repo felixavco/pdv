@@ -2,7 +2,6 @@
 
 module.exports = (sequelize, DataTypes) => {
   const Transaction = sequelize.define('Transaction', {
-    // id: DataTypes.UUID,
     storeId: DataTypes.UUID,
     userId: DataTypes.UUID,
     total: DataTypes.FLOAT,
