@@ -25,7 +25,7 @@ function getJWT(user) {
     const { id, storeId, role } = user;
     const payload = { id, storeId, role };
     const token = jwt.sign(payload, settings.SECRET, { expiresIn: '12h' });
-    return response(`Bearer ${token}`);
+    return response({ token: `Bearer ${token}` });
   } catch (error) {
     return response(null, false, { error });
   }

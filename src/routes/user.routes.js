@@ -17,6 +17,11 @@ class UserRoutes extends UserController {
       this.protected,
       this.create
     );
+
+    this.router.post(
+      '/login',
+      this.login
+    )
   }
 
   get Router() {

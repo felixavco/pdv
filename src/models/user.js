@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     storeId: DataTypes.UUID,
     role: DataTypes.INTEGER,
-    permissions: DataTypes.INTEGER
   }, {});
   User.associate = function ({ Transaction, InventoryLog, Store }) {
     User.belongsTo(Store, { foreignKey: 'id', onDelete: 'CASCADE' });

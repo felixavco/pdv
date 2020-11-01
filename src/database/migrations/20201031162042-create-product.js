@@ -30,7 +30,8 @@ module.exports = {
         type: Sequelize.UUID
       },
       discount: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT,
+        defaultValue: 0.00
       },
       createdAt: {
         allowNull: false,

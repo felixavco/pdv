@@ -1,5 +1,5 @@
 const { Store, User } = require('../models');
-const { ROLES } = require('../config');
+const { ROLES, messages } = require('../config');
 const { response, getJWT } = require('../utilities');
 
 class StoreController {
@@ -27,7 +27,7 @@ class StoreController {
         return res.status(401).json(response(
           null,
           false,
-          { message: 'User already exist' },
+          { message: messages.user_already_exist },
         ));
       }
 
@@ -36,17 +36,16 @@ class StoreController {
       if (store) {
         newUser.storeId = store.dataValues.id;
         newUser.role = ROLES.SUPER_ADMIN;
-        newUser.permissions = 1;
         user = await User.create(newUser);
 
         if (user) {
           const jwt = getJWT(user);
-          res.status(jwt.success ? 201 : 500).json(jwt);
+          return res.status(jwt.success ? 201 : 500).json(jwt);
         }
       }
 
     } catch (error) {
-      res.status(500).json(response(null, false, { error, message: error.toString() }));
+      return res.status(500).json(response(null, false, { error, message: error.toString() }));
     }
 
   }

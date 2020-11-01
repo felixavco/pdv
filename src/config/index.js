@@ -22,7 +22,17 @@ const ROLES = {
   USER: 0
 }
 
+const messages = {
+  insufficient_privileges: 'insufficient_privileges',
+  user_already_exist: 'user_already_exist',
+  product_already_exist: 'product_already_exist',
+  invalid_credentials: 'invalid_user_name_or_password',
+  no_products: 'no_products_found',
+  no_product: 'product_not_found',
+}
+
 module.exports = {
   settings,
   ROLES,
+  messages,
 };

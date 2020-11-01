@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       products: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

@@ -12,7 +12,31 @@ class ProductRoutes extends ProductController {
   }
 
   routes() {
-    this.router.get('/', this.getProducts);
+    this.router.get(
+      '/',
+      this.protected,
+      this.getList
+    );
+    this.router.get(
+      '/:productCode',
+      this.protected,
+      this.getOne
+    );
+    this.router.post(
+      '/',
+      this.protected,
+      this.create
+    );
+    this.router.put(
+      '/:id',
+      this.protected,
+      this.update
+    );
+    this.router.delete(
+      '/:id',
+      this.protected,
+      this.delete
+    );
   }
 
   get Router() {
