@@ -1,8 +1,7 @@
 const userTypes = {
-  REGISTER: 'REGISTER',
-  LOGIN: 'LOGIN',
-  SET_AUTH_USER: 'SET_AUTH_USER',
-  SET_ERROR: 'SET_ERROR',
+  SET_USER: 'SET_USER',
+  SET_USERS: 'SET_USERS',
+  SET_ERROR: 'SET_USER_ERROR',
 }
 
 export default userTypes;

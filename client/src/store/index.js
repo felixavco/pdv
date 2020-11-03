@@ -7,8 +7,10 @@ import thunk from 'redux-thunk';
 import layoutReducer from './layout/layout.reducer';
 import userReducer from './user/user.reducer';
 import productReducer from './product/product.reducer';
+import authReducer from './auth/auth.reducer';
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   layout: layoutReducer,
   user: userReducer,
   product: productReducer,

@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
-import { userActions } from '../../store/user/user.actions';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { paths } from '../../config';
+import { authActions } from '../../store/auth/auth.actions';
 
 function Register() {
+  const { isAuth } = useSelector((store) => store.auth);
+  const { push } = useHistory();
   const [state, setState] = useState({
     store: '',
     firstName: '',
@@ -12,9 +17,19 @@ function Register() {
     password: '',
   });
 
+  useEffect(() => {
+    if (isAuth) {
+      push(paths.dashboard);
+    }
+  }, [isAuth, push]);
+
+  if (isAuth) {
+    return null;
+  }
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    userActions.register(state);
+    authActions.register(state);
   };
 
   const onChangeHandler = ({ target }) => {

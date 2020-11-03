@@ -1,24 +1,18 @@
-import types from './user.types';
+import types from './auth.types';
 
 const initialState = {
-  users: [],
-  user: {},
+  isAuth: false,
+  authUser: {},
   errors: []
 }
 
 function reducer(state = initialState, { type, payload }) {
   switch (type) {
-
-    case types.SET_USERS:
+    case types.SET_AUTH_USER:
       return {
         ...state,
-        users: payload.users,
-      }
-
-    case types.SET_USER:
-      return {
-        ...state,
-        user: payload.user,
+        isAuth: payload.isAuth,
+        auth: payload.auth,
       }
 
     case types.SET_ERROR:
