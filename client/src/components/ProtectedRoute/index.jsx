@@ -1,16 +1,19 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { paths } from '../../config';
+import { paths, ROLES } from '../../config';
+import { useAuthUser } from '../hooks';
 
-function ProtectedRoute({ component: Component, ...rest }) {
-  const { isAuth } = useSelector((store) => store.auth);
-
+function ProtectedRoute({ component: Component, role = ROLES.USER, ...rest }) {
+  const { isAuth, hasRole } = useAuthUser(role);
   return (
     <Route
       {...rest}
       render={(props) =>
-        isAuth ? <Component {...props} /> : <Redirect to={paths.login} />
+        isAuth && hasRole ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={paths.login} />
+        )
       }
     />
   );

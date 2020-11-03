@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { paths } from '../../config';
+import { useAuthUser } from '../../components/hooks';
 import { authActions } from '../../store/auth/auth.actions';
 
 function Register() {
-  const { isAuth } = useSelector((store) => store.auth);
+  const { isAuth } = useAuthUser();
   const { push } = useHistory();
   const [state, setState] = useState({
     store: '',

@@ -3,8 +3,16 @@ export const paths = {
   register: '/register',
   dashboard: '/dashboard',
   users: (id = null) => `/users/${id ? id : ''}`,
+  userForm: '/users/form',
   products: (id = null) => `/products/${id ? id : ''}`,
+  productForm: '/products/form',
+}
 
+export const ROLES = {
+  IT: 1989,
+  SUPER_ADMIN: 2,
+  ADMIN: 1,
+  USER: 0
 }
 
 const store = '/store';
