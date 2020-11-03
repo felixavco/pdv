@@ -3,7 +3,7 @@ const initialState = {
   product: null,
 }
 
-export default (state = initialState, { type, payload }) => {
+function reducer(state = initialState, { type, payload }) {
   switch (type) {
 
     case 'test':
@@ -13,3 +13,5 @@ export default (state = initialState, { type, payload }) => {
       return state
   }
 }
+
+export default reducer;

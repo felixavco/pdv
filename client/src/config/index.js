@@ -2,6 +2,9 @@ export const paths = {
   login: '/login',
   register: '/register',
   dashboard: '/dashboard',
+  users: (id = null) => `/users/${id ? id : ''}`,
+  products: (id = null) => `/products/${id ? id : ''}`,
+
 }
 
 const store = '/store';
@@ -16,9 +19,9 @@ export const urls = {
     login: `${user}/login`,
     create: `${user}/create`,
     getAuth: `${user}/user-data`,
-    base: (id) => `${user}/${id ? id : ''}`,
+    base: (id = null) => `${user}/${id ? id : ''}`,
   },
   product: {
-    base: (id) => `${product}/${id ? id : ''}`,
+    base: (id = null) => `${product}/${id ? id : ''}`,
   }
 }
