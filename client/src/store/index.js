@@ -22,7 +22,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = createStore(
+const store = createStore(
   persistedReducer,
   composeWithDevTools(
     applyMiddleware(thunk)
@@ -30,3 +30,5 @@ export const store = createStore(
 );
 
 export const persistor = persistStore(store);
+
+export default store;

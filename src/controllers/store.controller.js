@@ -25,9 +25,8 @@ class StoreController {
 
       if (user) {
         return res.status(401).json(response(
-          null,
-          false,
           { message: messages.user_already_exist },
+          false,
         ));
       }
 
@@ -45,7 +44,7 @@ class StoreController {
       }
 
     } catch (error) {
-      return res.status(500).json(response(null, false, { error, message: error.toString() }));
+      return res.status(500).json(response({ error, message: error.toString() }, false));
     }
 
   }

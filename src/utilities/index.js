@@ -12,11 +12,10 @@ function isEmpty(value) {
   );
 }
 
-function response(data, success = true, options = {}) {
+function response(data, success = true) {
   return {
-    data,
+    ...data,
     success,
-    ...options,
   }
 }
 
@@ -27,7 +26,7 @@ function getJWT(user) {
     const token = jwt.sign(payload, settings.SECRET, { expiresIn: '12h' });
     return response({ token: `Bearer ${token}` });
   } catch (error) {
-    return response(null, false, { error });
+    return response({ error: error.toString() }, false);
   }
 }
 

@@ -10,7 +10,7 @@ const userRoutes = require('../routes/user.routes');
 
 
 const corsOptions = {
-  origin: ['http://localhost', 'https://favelar.cm'],
+  origin: ['http://localhost:3000', 'https://favelar.cm'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
 };
 

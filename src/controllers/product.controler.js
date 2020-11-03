@@ -33,13 +33,13 @@ class ProductController {
       });
 
       if (!products) {
-        return res.status(404).json(response([], false, { message: messages.no_products }))
+        return res.status(404).json(response({ message: messages.no_products }, false))
       }
 
       return res.json(response({ products }));
 
     } catch (error) {
-      return res.status(500).json(response(null, false, { error: error.toString() }));
+      return res.status(500).json(response({ error: error.toString() }, false));
     }
   }
 
@@ -50,11 +50,11 @@ class ProductController {
     try {
       const product = await Product.findOne({ where: { storeId, productCode } });
       if (!product) {
-        return res.status(404).json(response(null, false, { message: messages.no_product }));
+        return res.status(404).json(response({ message: messages.no_product }, false));
       }
       return res.json(response({ product }))
     } catch (error) {
-      return res.status(500).json(response(null, false, { error: error.toString() }));
+      return res.status(500).json(response({ error: error.toString() }, false));
     }
   }
 
@@ -63,7 +63,7 @@ class ProductController {
 
     if (role < ROLES.ADMIN) {
       return res.status(403).json(
-        response(null, false, { message: messages.insufficient_privileges })
+        response({ message: messages.insufficient_privileges }, false)
       )
     }
 
@@ -79,15 +79,15 @@ class ProductController {
       });
 
       if (!success) {
-        return res.status(409).json(response(null, false, {
+        return res.status(409).json(response({
           message: messages.product_already_exist
-        }));
+        }, false));
       }
 
       return res.status(201).json(response({ product }));
 
     } catch (error) {
-      return res.status(500).json(response(null, false, { error: error.toString() }));
+      return res.status(500).json(response({ error: error.toString() }, false));
     }
   }
 
@@ -96,7 +96,7 @@ class ProductController {
 
     if (role < ROLES.ADMIN) {
       return res.status(403).json(
-        response(null, false, { message: messages.insufficient_privileges })
+        response({ message: messages.insufficient_privileges }, false)
       )
     }
 
@@ -107,13 +107,13 @@ class ProductController {
       const [success] = await Product.update(updated, { where: { id, storeId } });
 
       if (!success) {
-        return res.status(404).json(response(null, false, { message: messages.no_product }));
+        return res.status(404).json(response({ message: messages.no_product }, false));
       }
 
       return res.json(response({ updatedValues: updated }));
 
     } catch (error) {
-      return res.status(500).json(response(null, false, { error: error.toString() }));
+      return res.status(500).json(response({ error: error.toString() }, false));
     }
   }
 
@@ -123,20 +123,20 @@ class ProductController {
 
     if (role < ROLES.ADMIN) {
       return res.status(403).json(
-        response(null, false, { message: messages.insufficient_privileges })
+        response({ message: messages.insufficient_privileges }, false)
       )
     }
 
     try {
       const deleted = await Product.destroy({ where: { storeId, id } });
       if (!deleted) {
-        return res.status(404).json(response(null, false, { message: messages.no_product }));
+        return res.status(404).json(response({ message: messages.no_product }, false));
       }
 
       return res.json(response({ id }));
 
     } catch (error) {
-      return res.status(500).json(response(null, false, { error: error.toString() }));
+      return res.status(500).json(response({ error: error.toString() }, false));
     }
 
   }

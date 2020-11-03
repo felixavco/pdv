@@ -22,7 +22,7 @@ class TransactionController {
       ))
 
     } catch (error) {
-      return res.status(500).json(response(null, false, { error: error.toString() }));
+      return res.status(500).json(response({ error: error.toString() }, false));
     }
   }
 
@@ -40,7 +40,7 @@ class TransactionController {
         return total;
       });
     } catch (error) {
-      return response(null, false, { error: error.toString() });
+      return response({ error: error.toString() }, false);
     }
   }
 }

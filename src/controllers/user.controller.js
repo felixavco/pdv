@@ -10,7 +10,7 @@ class UserController {
 
     if (role < ROLES.ADMIN) {
       return res.status(403).json(
-        response(null, false, { message: messages.insufficient_privileges })
+        response({ message: messages.insufficient_privileges }, false)
       );
     }
 
@@ -22,13 +22,13 @@ class UserController {
     try {
       const [user, success] = await User.findOrCreate({ where: { email }, defaults: newUser });
       if (!success) {
-        return res.status(409).json(response(null, false, { message: messages.user_already_exist }));
+        return res.status(409).json(response({ message: messages.user_already_exist }, false));
       }
       delete user.password;
       delete user.role;
-      return res.status(201).json(response({ user }, true));
+      return res.status(201).json(response({ user }));
     } catch (error) {
-      return res.status(500).json(response(null, false, { error: error.toString() }));
+      return res.status(500).json(response({ error: error.toString() }, false));
     }
   }
 
@@ -36,7 +36,7 @@ class UserController {
     try {
       const { email, password } = req.body;
 
-      const notAuthError = response(null, false, { message: messages.invalid_credentials });
+      const notAuthError = response({ message: messages.invalid_credentials }, false);
 
       const user = await User.findOne({ where: { email } });
 
@@ -53,14 +53,14 @@ class UserController {
       return res.status(200).json(getJWT(user));
 
     } catch (error) {
-      return res.status(500).json(response(null, false, { error: error.toString() }));
+      return res.status(500).json(response({ error: error.toString() }, false));
     }
   }
 
   getUser(req, res) {
     const { user } = req;
     delete user.password;
-    res.json({ user });
+    res.json(response({ user }));
   }
 
   async getOne(req, res) {
@@ -69,7 +69,7 @@ class UserController {
 
     if (role < ROLES.ADMIN) {
       return res.status(403).json(
-        response(null, false, { message: messages.insufficient_privileges })
+        response({ message: messages.insufficient_privileges }, false)
       );
     }
 
@@ -77,14 +77,14 @@ class UserController {
       const user = await User.findOne({ where: { storeId, id } });
       if (!user) {
         return res.status(404).json(
-          response(null, false, { message: messages.no_user })
+          response({ message: messages.no_user }, false)
         )
       }
 
       delete user.password;
       return res.json(response({ user }));
     } catch (error) {
-      return res.status(500).json(response(null, false, { error: error.toString() }));
+      return res.status(500).json(response({ error: error.toString() }, false));
     }
   }
 
@@ -93,7 +93,7 @@ class UserController {
 
     if (role < ROLES.ADMIN) {
       return res.status(403).json(
-        response(null, false, { message: messages.insufficient_privileges })
+        response({ message: messages.insufficient_privileges }, false)
       );
     }
 
@@ -124,13 +124,13 @@ class UserController {
       });
 
       if (!users) {
-        return res.status(404).json(response([], false, { message: messages.no_users }))
+        return res.status(404).json(response({ message: messages.no_users }, false));
       }
 
       return res.json(response({ users }));
 
     } catch (error) {
-      return res.status(500).json(response(null, false, { error: error.toString() }));
+      return res.status(500).json(response({ error: error.toString() }, false));
     }
   }
 
@@ -139,7 +139,7 @@ class UserController {
 
     if (role < ROLES.ADMIN) {
       return res.status(403).json(
-        response(null, false, { message: messages.insufficient_privileges })
+        response({ message: messages.insufficient_privileges }, false)
       )
     }
 
@@ -150,14 +150,14 @@ class UserController {
       const [success] = await User.update(updated, { where: { id, storeId } });
       if (!success) {
         return res.status(404).json(
-          response(null, false, { message: messages.no_user })
+          response({ message: messages.no_user }, false)
         )
       }
 
       return res.json(response({ updatedValues: updated }));
 
     } catch (error) {
-      return res.status(500).json(response(null, false, { error: error.toString() }));
+      return res.status(500).json(response({ error: error.toString() }, false));
     }
   }
 
@@ -167,7 +167,7 @@ class UserController {
 
     if (role < ROLES.ADMIN) {
       return res.status(403).json(
-        response(null, false, { message: messages.insufficient_privileges })
+        response({ message: messages.insufficient_privileges }, false)
       )
     }
 
@@ -175,13 +175,13 @@ class UserController {
       const deleted = await User.destroy({ where: { storeId, id } });
 
       if (!deleted) {
-        return res.status(404).json(response(null, false, { message: messages.no_user }));
+        return res.status(404).json(response({ message: messages.no_user }, false));
       }
 
       return res.json(response({ id }));
 
     } catch (error) {
-      return res.status(500).json(response(null, false, { error: error.toString() }));
+      return res.status(500).json(response({ error: error.toString() }, false));
     }
   }
 

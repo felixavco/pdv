@@ -1,3 +1,5 @@
+import types from './user.types';
+
 const initialState = {
   isAuth: false,
   auth: null,
@@ -5,13 +7,14 @@ const initialState = {
   user: {},
 }
 
-export default (state = initialState, { type, payload }) => {
+function reducer(state = initialState, { type, payload }) {
   switch (type) {
-
-    case 'ts':
+    case types.REGISTER:
       return { ...state, ...payload }
 
     default:
       return state
   }
 }
+
+export default reducer;
